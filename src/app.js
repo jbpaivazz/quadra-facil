@@ -7,7 +7,15 @@ let activeSport = 'all';
 function renderCourts() {
   const query = document.querySelector('#search').value.toLocaleLowerCase('pt-BR');
   const visible = courts.filter(court => (activeSport === 'all' || court.sport === activeSport) && `${court.name} ${court.sport} ${court.area}`.toLocaleLowerCase('pt-BR').includes(query));
-  grid.innerHTML = visible.length ? visible.map((court, index) => `<article class="court-card"><div class="court-photo" aria-hidden="true">${court.icon}</div><div class="court-info"><h3>${court.name}</h3><p>${court.type} · ${court.area}</p><div class="court-meta"><span>${court.sport}</span><span class="price"><b>R$ ${court.price}</b> / hora</span></div><div class="slots">${court.times.map(time => `<button class="slot" data-court="${courts.indexOf(court)}" data-time="${time}">${time}</button>`).join('')}</div></div></article>`).join('') : '<p class="empty">Nenhuma quadra encontrada. Tente outra busca.</p>';
+  grid.innerHTML = visible.length
+    ? visible.map(court => {
+      const slots = court.times.map(time => {
+        const unavailable = court.unavailable?.includes(time);
+        return `<button class="slot${unavailable ? ' unavailable' : ''}" data-court="${courts.indexOf(court)}" data-time="${time}" ${unavailable ? 'disabled title="Horário indisponível"' : ''}>${time}</button>`;
+      }).join('');
+      return `<article class="court-card"><div class="court-photo" aria-hidden="true">${court.icon}</div><div class="court-info"><h3>${court.name}</h3><p>${court.type} · ${court.area}</p><div class="court-meta"><span>${court.sport}</span><span class="price"><b>R$ ${court.price}</b> / hora</span></div><div class="slots">${slots}</div></div></article>`;
+    }).join('')
+    : '<p class="empty">Nenhuma quadra encontrada. Tente outra busca.</p>';
   grid.querySelectorAll('.slot').forEach(button => button.addEventListener('click', () => openBooking(Number(button.dataset.court), button.dataset.time)));
 }
 function openBooking(courtIndex, time) {
