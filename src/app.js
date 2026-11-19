@@ -4,9 +4,12 @@ const grid = document.querySelector('#court-grid');
 const dialog = document.querySelector('#booking-dialog');
 let selectedCourt = null;
 let activeSport = 'all';
+function normalizeText(value) {
+  return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR');
+}
 function renderCourts() {
-  const query = document.querySelector('#search').value.toLocaleLowerCase('pt-BR');
-  const visible = courts.filter(court => (activeSport === 'all' || court.sport === activeSport) && `${court.name} ${court.sport} ${court.area}`.toLocaleLowerCase('pt-BR').includes(query));
+  const query = normalizeText(document.querySelector('#search').value);
+  const visible = courts.filter(court => (activeSport === 'all' || court.sport === activeSport) && normalizeText(`${court.name} ${court.sport} ${court.area}`).includes(query));
   grid.innerHTML = visible.length
     ? visible.map(court => {
       const slots = court.times.map(time => {
@@ -49,3 +52,4 @@ document.querySelector('#confirm-booking').addEventListener('click', event => {
   setTimeout(() => dialog.close(), 1600);
 });
 renderCourts();
+
