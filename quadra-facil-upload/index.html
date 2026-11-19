@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Encontre e agende quadras esportivas em Santa Inês e região.">
+  <title>Quadra Fácil | Agende sua quadra</title>
+  <link rel="stylesheet" href="src/styles.css">
+  <script src="src/courts.js" defer></script>
+  <script src="src/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Quadra Fácil, início"><span class="brand-icon">Q</span> Quadra <strong>Fácil</strong></a>
+    <nav aria-label="Navegação principal"><a href="#quadras">Quadras</a><a href="#como-funciona">Como funciona</a></nav>
+    <a class="button button-small" href="#quadras">Encontrar horário</a>
+  </header>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> SANTA INÊS E REGIÃO</p>
+        <h1>Seu próximo jogo<br>começa <em>aqui.</em></h1>
+        <p class="hero-text">Encontre uma quadra, escolha o melhor horário e reúna o time. Simples assim.</p>
+        <a class="button" href="#quadras">Encontrar uma quadra <span aria-hidden="true">→</span></a>
+        <div class="hero-note"><span class="avatar-stack"><i>⚽</i><i>🏀</i><i>🏐</i></span><span>Mais jogo, menos complicação.</span></div>
+      </div>
+      <div class="hero-art" aria-label="Ilustração de uma quadra esportiva">
+        <div class="sun"></div><div class="court"><div class="court-line center"></div><div class="court-line box-left"></div><div class="court-line box-right"></div><div class="court-circle"></div><span class="ball">⚽</span></div>
+        <div class="floating-card"><span class="check">✓</span><span><b>Seu horário, garantido</b><small>Reserva sem conflito</small></span></div>
+      </div>
+    </section>
+    <section class="booking" id="quadras">
+      <div class="section-heading"><div><p class="eyebrow">ESCOLHA SEU JOGO</p><h2>Quadras por perto</h2></div><div class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar quadra ou esporte" aria-label="Buscar quadra ou esporte"><button id="clear-search" type="button" aria-label="Limpar busca">×</button></div></div>
+      <div class="filters" role="group" aria-label="Filtrar por esporte"><button class="filter active" data-sport="all">Todas</button><button class="filter" data-sport="Futebol">⚽ Futebol</button><button class="filter" data-sport="Basquete">🏀 Basquete</button><button class="filter" data-sport="Vôlei">🏐 Vôlei</button></div>
+      <div class="court-grid" id="court-grid" aria-live="polite"></div>
+    </section>
+    <section class="how" id="como-funciona"><p class="eyebrow">SEM COMPLICAÇÃO</p><h2>Dois toques e tá marcado.</h2><div class="steps"><article><span>01</span><h3>Escolha a quadra</h3><p>Veja opções de esportes e espaços na região.</p></article><article><span>02</span><h3>Selecione o horário</h3><p>Consulte a disponibilidade antes de reservar.</p></article><article><span>03</span><h3>Chame o time</h3><p>Confirme seu agendamento e prepare o jogo.</p></article></div></section>
+  </main>
+  <footer><a class="brand" href="#inicio"><span class="brand-icon">Q</span> Quadra <strong>Fácil</strong></a><span>Feito para a galera de Santa Inês. 🏟️</span></footer>
+  <dialog id="booking-dialog"><form method="dialog" class="dialog-card"><button class="close" aria-label="Fechar">×</button><p class="eyebrow">RESERVAR QUADRA</p><h2 id="dialog-title">Agende seu jogo</h2><label>Seu nome<input id="name" required placeholder="Como podemos chamar você?"></label><label>Data da reserva<input id="date" type="date" required></label><label>Escolha um horário<select id="time" required></select></label><button class="button" id="confirm-booking" value="confirm">Confirmar reserva <span>→</span></button><p class="form-message" id="form-message" aria-live="polite"></p></form></dialog>
+</body>
+</html>
