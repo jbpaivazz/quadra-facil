@@ -13,6 +13,10 @@ function renderCourts() {
 function openBooking(courtIndex, time) {
   selectedCourt = courts[courtIndex];
   document.querySelector('#dialog-title').textContent = selectedCourt.name;
+  const dateInput = document.querySelector('#date');
+  const today = new Date();
+  dateInput.min = today.toLocaleDateString('sv-SE');
+  dateInput.value = dateInput.min;
   document.querySelector('#time').innerHTML = selectedCourt.times.map(slot => `<option ${slot === time ? 'selected' : ''}>${slot}</option>`).join('');
   document.querySelector('#form-message').textContent = '';
   dialog.showModal();
@@ -26,7 +30,8 @@ document.querySelector('#confirm-booking').addEventListener('click', event => {
   event.preventDefault();
   const name = document.querySelector('#name').value.trim();
   if (!name) { document.querySelector('#name').reportValidity(); return; }
-  document.querySelector('#form-message').textContent = `Pedido demonstrativo registrado para ${name} às ${document.querySelector('#time').value}.`;
+  const date = new Date(`${document.querySelector('#date').value}T00:00:00`).toLocaleDateString('pt-BR');
+  document.querySelector('#form-message').textContent = `Pedido demonstrativo registrado para ${name} em ${date} às ${document.querySelector('#time').value}.`;
   setTimeout(() => dialog.close(), 1600);
 });
 renderCourts();
