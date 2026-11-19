@@ -34,6 +34,12 @@ document.querySelectorAll('.filter').forEach(button => button.addEventListener('
   button.classList.add('active'); activeSport = button.dataset.sport; renderCourts();
 }));
 document.querySelector('#search').addEventListener('input', renderCourts);
+document.querySelector('#clear-search').addEventListener('click', () => {
+  const field = document.querySelector('#search');
+  field.value = '';
+  field.focus();
+  renderCourts();
+});
 document.querySelector('#confirm-booking').addEventListener('click', event => {
   event.preventDefault();
   const name = document.querySelector('#name').value.trim();
