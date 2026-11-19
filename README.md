@@ -32,6 +32,10 @@ Abra `index.html` no navegador para visualizar.
 3. Persistir quadras, disponibilidade e reservas.
 4. Validar regras de conflito no servidor.
 
+## Requisitos do projeto
+
+Consulte [docs/requisitos.md](docs/requisitos.md) para o escopo inicial de usuários, reservas e administração.
+
 ## Contribuição
 
-Cada integrante deve usar sua própria conta GitHub e identidade Git configurada para registrar pelo menos dois commits individuais com partes da estrutura inicial. Convide os integrantes como colaboradores pelo GitHub após criar o repositório.
+Este repositório é mantido individualmente. Use sua conta GitHub e identidade Git próprias para registrar as alterações.
